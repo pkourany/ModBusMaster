@@ -1,6 +1,8 @@
 /**
 @file
 Arduino library for communicating with Modbus slaves over RS232/485 (via RTU protocol).
+
+Adapted for Spark Core by Paul Kourany, March 14, 2014
 */
 /*
 
@@ -24,17 +26,17 @@ Arduino library for communicating with Modbus slaves over RS232/485 (via RTU pro
   
   Written by Doc Walker (Rx)
   Copyright Â© 2009-2013 Doc Walker <4-20ma at wvfans dot net>
-  
+  Adapted for Spark Core by Paul Kourany, March 14, 2014
 */
 
 
 /* _____PROJECT INCLUDES_____________________________________________________ */
 #include "ModbusMaster.h"
 
-#undef SPARK_SERIAL2 
+#undef SPARK_SERIAL2 		// #define once Spark Serial2 is implemented
 
 /* _____GLOBAL VARIABLES_____________________________________________________ */
-USARTSerial MBSerial = Serial1; 	///< Pointer to Serial class object
+USARTSerial MBSerial = Serial1; 	///< Pointer to Serial1 class object
 
 
 
@@ -159,7 +161,7 @@ void ModbusMaster::begin(uint16_t u16BaudRate)
 #endif
     case 0:
     default:
-      MBSerial = Serial1;
+      MBSerial = Serial1;		// Default to Serial1 for Spark Core
       break;
   }
   
